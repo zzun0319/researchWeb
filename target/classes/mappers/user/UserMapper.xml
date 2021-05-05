@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.junhee.researchWeb.user.repository.IUserMapper">
+
+	<insert id="Register">
+		INSERT INTO members (member_type, user_id, user_pw, identified_num, user_name, email, phone_num, major) 
+		VALUES (#{memberType},#{userId},#{userPw},#{identifiedNum},#{userName},#{email},#{phoneNum},#{major})
+	</insert>
+	
+	
+    
+</mapper>
