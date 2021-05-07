@@ -7,7 +7,7 @@
 	<!-- Connection Pool, MyBatis DI -->
 	<bean id="hikariCP" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521/WEPDB1" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521/XEPDB1" /> <!-- researchWeb이 들어가야하나..? -->
 		<property name="username" value="junhee" />
 		<property name="password" value="1234" />
 	</bean>

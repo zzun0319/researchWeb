@@ -2,7 +2,7 @@ package com.junhee.researchWeb.user.model;
 
 public class UserVO {
 	
-	private int memberType;
+	private int memberType; // 1: 학부생, 2: 대학원생, 3: 강사, 4: 지도교수
 	private String userId;
 	private String userPw;
 	private String identifiedNum; // 학번, 교번

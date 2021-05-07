@@ -4,9 +4,35 @@
     
 <mapper namespace="com.junhee.researchWeb.user.repository.IUserMapper">
 
+	<resultMap id="UserMap" type="com.junhee.researchWeb.user.model.UserVO" >
+		<id property="userId" column="user_id" />
+		<result property="memberType" column="member_type" />
+		<result property="userPw" column="user_pw" />
+		<result property="identifiedNum" column="identified_num" />
+		<result property="userName" column="user_name" />
+		<result property="email" column="email" />
+		<result property="phoneNum" column="phone_num" />
+		<result property="permit" column="permit" />
+		<result property="major" column="major" />
+	</resultMap>
+
+	<sql id="join"> <!-- 회원 타입에 따라 넣어야할 값들이 다르기 때문에 사용 -->
+		<if test="memberType==1"> <!-- int형이어도 따옴표 붙여야하나..? -->
+			INSERT INTO members (member_type, user_id, user_pw, identified_num, user_name, email, phone_num, permit) 
+		VALUES (#{memberType},#{userId},#{userPw},#{identifiedNum},#{userName},#{email},#{phoneNum}, 1)
+		</if>
+		<if test="memberType==2 || memberType==4">
+			INSERT INTO members (member_type, user_id, user_pw, identified_num, user_name, email, phone_num, major) 
+		VALUES (#{memberType},#{userId},#{userPw},#{identifiedNum},#{userName},#{email},#{phoneNum}, #{major})
+		</if>
+		<if test="memberType==3">
+			INSERT INTO members (member_type, user_id, user_pw, identified_num, user_name, email, phone_num) 
+		VALUES (#{memberType},#{userId},#{userPw},#{identifiedNum},#{userName},#{email},#{phoneNum})
+		</if>
+	</sql>
+
 	<insert id="Register">
-		INSERT INTO members (member_type, user_id, user_pw, identified_num, user_name, email, phone_num, major) 
-		VALUES (#{memberType},#{userId},#{userPw},#{identifiedNum},#{userName},#{email},#{phoneNum},#{major})
+		<include refid="join" />
 	</insert>
 	
 	
