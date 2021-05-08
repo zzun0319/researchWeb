@@ -5,15 +5,15 @@
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Connection Pool, MyBatis DI -->
-	<bean id="hikariCP" class="com.zaxxer.hikari.HikariConfig">
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521/XEPDB1" /> <!-- researchWeb이 들어가야하나..? -->
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" /> <!-- researchWeb이 들어가야하나..? -->
 		<property name="username" value="junhee" />
 		<property name="password" value="1234" />
-	</bean>
+	</bean>	
 	
 	<bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
-		<constructor-arg ref="hikariCP"/>
+		<constructor-arg ref="hikariConfig"/>
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
