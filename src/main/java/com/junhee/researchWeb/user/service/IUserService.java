@@ -8,7 +8,10 @@ public interface IUserService {
 	void Register(UserVO user);
 		
 	// 로그인 체크 기능 (가입 승인 여부도 체크해야함)
-	UserVO getOneUserInfo(String userId);
+	UserVO getOneUserInfo(UserVO user);
+	
+	//로그인 체크 기능
+	String getLoginCheckMessage(UserVO user);
 		
 	// 회원 정보 수정 기능
 	void UpdateUserInfo(UserVO user);

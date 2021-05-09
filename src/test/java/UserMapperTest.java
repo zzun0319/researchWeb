@@ -68,16 +68,19 @@ public class UserMapperTest {
 		//int type = 2;
 		String id = "participant1"; 
 		String pw = "participant1";
-		int type = 1;
-		UserVO user = mapper.getOneUserInfo(id);
-		if(user == null) { // 아이디도 없을 때
+		UserVO user = new UserVO();
+		user.setUserId(id);
+		user.setUserPw(pw);
+		user.setMemberType(1);
+		UserVO user2 = mapper.getOneUserInfo(user.getUserId());
+		if(user2 == null) { // 아이디도 없을 때
 			System.out.println("일치하는 id가 없습니다." ); // 확인 완료
 		} else { // 일치하는 아이디 있을 때
-			if(user.getMemberType() != type) { // 회원분류가 다를 때
+			if(user2.getMemberType() != user.getMemberType()) { // 회원분류가 다를 때
 				System.out.println("회원분류가 일치하지 않습니다." ); // 확인 완료
-			} else if(!user.getUserPw().equals(pw)) { // 비밀번호가 일치하지 않을 때
+			} else if(!user2.getUserPw().equals(user.getUserPw())) { // 비밀번호가 일치하지 않을 때
 				System.out.println("비밀번호가 일치하지 않습니다." ); // 확인 완료
-			} else if(user.getPermit() == 0) { // 승인이 나지 않았을 때
+			} else if(user2.getPermit() == 0) { // 승인이 나지 않았을 때
 				System.out.println("아직 가입승인되지 않은 사용자입니다." ); // 확인 완료
 			} else {
 				System.out.println("로그인에 성공하였습니다."); // 확인 완료

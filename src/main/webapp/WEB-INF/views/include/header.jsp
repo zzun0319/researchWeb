@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 
 <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
-<!-- Core theme CSS (includes Bootstrap)-->
 <link href="resources/css/styles.css" rel="stylesheet" />
 
 </head>
