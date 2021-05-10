@@ -9,6 +9,7 @@
 <link rel="icon" type="image/x-icon" href="../resources/assets/favicon.ico" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../resources/css/styles.css" rel="stylesheet" />
+<script type="text/javascript" src="../resources/js/jquery-3.5.1.js"></script>
 
 </head>
 <body>
@@ -57,3 +58,12 @@
 
 </body>
 </html>
+
+<script>
+	const result = "${msg}"
+	if(result.length > 0){
+		alert(result);
+	}
+
+
+</script>
