@@ -6,10 +6,10 @@
 <meta charset="UTF-8">
 <title>로그인 페이지</title>
 
-<link rel="icon" type="image/x-icon" href="../resources/assets/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../resources/css/styles.css" rel="stylesheet" />
-<script type="text/javascript" src="../resources/js/jquery-3.5.1.js"></script>
+<link href="/css/styles.css" rel="stylesheet" />
+<script type="text/javascript" src="/js/jquery-3.5.1.js"></script>
 
 </head>
 <body>
@@ -21,7 +21,7 @@
 		<h2>로그인 페이지입니다.</h2>
 		</p>
 		<p>
-		<form action="post">
+		<form method="post">
 			<table>
 				<tr>
 					<td>회원분류</td>
@@ -61,8 +61,8 @@
 
 <script>
 	const result = "${msg}"
-	if(result.length > 0){
-		alert(result);
+	if(result != "로그인 성공" && result.length > 0){
+		alert(result)
 	}
 
 

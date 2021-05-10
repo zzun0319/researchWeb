@@ -31,7 +31,8 @@ public class UserController {
 		System.out.println("로그인 요청: POST");
 		String msg = service.getLoginCheckMessage(user);
 		if(!msg.equals("로그인 성공")) {
-			ra.addFlashAttribute(msg);
+			System.out.println(msg);
+			ra.addFlashAttribute("msg", msg);
 			return "redirect:/user/login";
 		} else {
 			session.setAttribute("user", service.getOneUserInfo(user));
