@@ -18,10 +18,10 @@
 	
 	<div class="container">
 		<p>
-		<h2>로그인 페이지입니다.</h2>
+		<h2>회원가입을 환영합니다.</h2>
 		</p>
 		<p>
-		<form method="post" name="login_form">
+		<form method="post">
 			<table>
 				<tr>
 					<td>회원분류</td>
@@ -35,16 +35,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td>아이디</td>
-					<td><input type="text" name="userId" placeholder="아이디를 입력하세요." /></td>
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td><input type="password" name="userPw" placeholder="비밀번호를 입력하세요." /></td>
-				</tr>
-				<tr>
 					<td rowspan="2">
-						<input type="submit" value="로그인">
+						<input type="submit" value="다음">
 					</td>
 				</tr>
 			</table>
@@ -58,13 +50,3 @@
 
 </body>
 </html>
-
-<script>
-	const result = "${msg}"
-	if(result != "로그인 성공" && result.length > 0){
-		alert(result)
-		// 이렇게 할 게 아니라 에러메시지별, 커서 갖다놓는 위치를 다르게 해야 해서 조건문 다 만들어줘야함.
-	}
-
-
-</script>
