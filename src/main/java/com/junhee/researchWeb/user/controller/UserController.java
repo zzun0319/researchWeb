@@ -47,19 +47,8 @@ public class UserController {
 	public void RegisterReq() {}
 	
 	@PostMapping("/register")
-	public String RegisterReq(@ModelAttribute("memberType") int memberType, Model model) {
-		if(memberType == 1) {
-			model.addAttribute("mType", "학부생");
-		}
-		else if(memberType == 2) {
-			model.addAttribute("mType", "대학원생");
-		}
-		else if(memberType == 3) {
-			model.addAttribute("mType", "강사");
-		}
-		else {
-			model.addAttribute("mType", "지도교수");
-		}
+	public String RegisterReq(@ModelAttribute("memberType") String memberType) {
+		
 		return "user/register2";
 	}
 	

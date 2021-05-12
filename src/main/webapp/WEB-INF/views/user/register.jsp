@@ -27,10 +27,10 @@
 					<td>회원분류</td>
 					<td>
 						<select name="memberType">
-							<option value="1">학부생</option>
-							<option value="2">대학원생</option>
-							<option value="3">강사</option>
-							<option value="4">지도교수</option>
+							<option value="학부생">학부생</option>
+							<option value="대학원생">대학원생</option>
+							<option value="강사">강사</option>
+							<option value="지도교수">지도교수</option>
 						</select>
 					</td>
 				</tr>

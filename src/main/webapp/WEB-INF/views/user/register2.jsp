@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,12 +22,18 @@
 		<h2>회원가입 정보를 입력해주세요.</h2>
 		</p>
 		<p>
-		<form>
+		<form method="post">
 			<table>
 				<tr>
 					<td>회원분류</td>
 					<td>
-						<input value="${mType}" disabled>
+						<input name="memberType" value="${memberType}" disabled>
+					</td>
+				</tr>
+				<tr>
+					<td>아이디</td>
+					<td>
+						<input type="text" name="userId">
 					</td>
 				</tr>
 				<tr>

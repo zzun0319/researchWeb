@@ -2,7 +2,7 @@ package com.junhee.researchWeb.user.model;
 
 public class UserVO {
 	
-	private int memberType; // 1: 학부생, 2: 대학원생, 3: 강사, 4: 지도교수
+	private String memberType; // 학부생, 대학원생, 강사, 지도교수
 	private String userId;
 	private String userPw;
 	private String identifiedNum; // 학번, 교번
@@ -14,7 +14,9 @@ public class UserVO {
 	
 	public UserVO() {}
 
-	public UserVO(int memberType, String userId, String userPw, String identifiedNum, String userName, String email,
+	
+
+	public UserVO(String memberType, String userId, String userPw, String identifiedNum, String userName, String email,
 			String phoneNum, int permit, String major) {
 		this.memberType = memberType;
 		this.userId = userId;
@@ -27,11 +29,11 @@ public class UserVO {
 		this.major = major;
 	}
 
-	public int getMemberType() {
+	public String getMemberType() {
 		return memberType;
 	}
-
-	public void setMemberType(int memberType) {
+	
+	public void setMemberType(String memberType) {
 		this.memberType = memberType;
 	}
 
@@ -99,11 +101,15 @@ public class UserVO {
 		this.major = major;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "UserVO [memberType=" + memberType + ", userId=" + userId + ", userPw=" + userPw + ", identifiedNum="
 				+ identifiedNum + ", userName=" + userName + ", email=" + email + ", phoneNum=" + phoneNum + ", permit="
 				+ permit + ", major=" + major + "]";
 	}
+
+	
 	
 }
