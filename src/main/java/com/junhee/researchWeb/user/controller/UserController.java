@@ -47,8 +47,8 @@ public class UserController {
 	public void RegisterReq() {}
 	
 	@PostMapping("/register")
-	public String RegisterReq(@ModelAttribute("memberType") String memberType) {
-		
+	public String RegisterReq(@ModelAttribute("memberType") String memberType, Model model) {
+		model.addAttribute("majorList", service.getMajors());
 		return "user/register2";
 	}
 	

@@ -1,3 +1,5 @@
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,6 +116,15 @@ public class UserMapperTest {
 		} else {
 			System.out.println("삭제실패");
 		}
+	}
+	
+	@Test
+	public void getMajorTest() {
+		List<UserVO> list = mapper.getMajors();
+		for(UserVO u:list) {
+			System.out.println(u.getMajor());
+		}
+		System.out.println(list.size());
 	}
 	
 

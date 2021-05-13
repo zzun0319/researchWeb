@@ -27,6 +27,7 @@
 					<td>회원분류</td>
 					<td>
 						<select name="memberType">
+							<option>=== 선택 === </option>
 							<option value="학부생">학부생</option>
 							<option value="대학원생">대학원생</option>
 							<option value="강사">강사</option>

@@ -1,5 +1,8 @@
 package com.junhee.researchWeb.user.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +60,16 @@ public class UserService implements IUserService {
 	public void DeleteUser(String userId) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<String> getMajors() {
+		List<UserVO> uList = mapper.getMajors();
+		List<String> majorList = new ArrayList<>();
+		for(UserVO user : uList) {
+			majorList.add(user.getMajor());
+		}
+		return majorList;
 	}
 
 }
