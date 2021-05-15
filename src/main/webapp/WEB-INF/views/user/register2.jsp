@@ -123,6 +123,8 @@
 <script>
 	$(function() {
 		
+		const getIdCheck = RegExp(/^[a-zA-z0-9]{4,14}$/); // 따옴표(/), 적용 시작(^), 적용 끝($), [허용되는 것: 영문 대소문자 & 숫자] {최소, 최대}
+		const getPwCheck = RegExp(/[a-zA-Z0-9].*); // a.(a로 시작하는 것들) .n(n으로 끝나는 것들) / *(반복되는 것) 
 		
 	})
 </script>
