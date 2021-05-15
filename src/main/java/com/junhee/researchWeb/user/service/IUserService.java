@@ -1,5 +1,7 @@
 package com.junhee.researchWeb.user.service;
 
+import java.util.List;
+
 import com.junhee.researchWeb.user.model.UserVO;
 
 public interface IUserService {
@@ -19,7 +21,9 @@ public interface IUserService {
 	// 비밀 번호 수정 기능
 	void UpdatePassword(String userId, String userPw);
 	
-		
 	// 회원 탈퇴 기능
 	void DeleteUser(String userId);
+	
+	// 전공 리스트 가져오기
+	List<String> getMajors();
 }

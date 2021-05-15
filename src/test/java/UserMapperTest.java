@@ -1,3 +1,5 @@
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ public class UserMapperTest {
 	@Test
 	public void insertTest() {
 		UserVO user1 = new UserVO();
-		user1.setMemberType(1); // 학부생
+		user1.setMemberType("학부생");
 		user1.setUserId("participant1");
 		user1.setUserPw("participant1");
 		user1.setIdentifiedNum("201121725");
@@ -28,7 +30,7 @@ public class UserMapperTest {
 		mapper.Register(user1);
 		//////////////////////////////
 		UserVO user2 = new UserVO();
-		user2.setMemberType(2); // 대학원생
+		user2.setMemberType("대학원생"); 
 		user2.setUserId("researcher1");
 		user2.setUserPw("researcher1");
 		user2.setIdentifiedNum("201812345");
@@ -39,7 +41,7 @@ public class UserMapperTest {
 		mapper.Register(user2);
 		///////////////////////////////
 		UserVO user3 = new UserVO();
-		user3.setMemberType(3); // 강사
+		user3.setMemberType("강사"); 
 		user3.setUserId("instructor1");
 		user3.setUserPw("instructor1");
 		user3.setIdentifiedNum("201899999");
@@ -49,7 +51,7 @@ public class UserMapperTest {
 		mapper.Register(user3);
 		///////////////////////////////
 		UserVO user4 = new UserVO();
-		user4.setMemberType(4); // 지도교수
+		user4.setMemberType("지도교수"); 
 		user4.setUserId("advisor1");
 		user4.setUserPw("advisor1");
 		user4.setIdentifiedNum("200100011");
@@ -65,18 +67,18 @@ public class UserMapperTest {
 		
 		//String id = "researcher1"; 
 		//String pw = "researcher1";
-		//int type = 2;
+		//int type = "대학원생";
 		String id = "participant1"; 
 		String pw = "participant1";
 		UserVO user = new UserVO();
 		user.setUserId(id);
 		user.setUserPw(pw);
-		user.setMemberType(1);
+		user.setMemberType("학부생");
 		UserVO user2 = mapper.getOneUserInfo(user.getUserId());
 		if(user2 == null) { // 아이디도 없을 때
 			System.out.println("일치하는 id가 없습니다." ); // 확인 완료
 		} else { // 일치하는 아이디 있을 때
-			if(user2.getMemberType() != user.getMemberType()) { // 회원분류가 다를 때
+			if(!user2.getMemberType().equals(user.getMemberType())) { // 회원분류가 다를 때
 				System.out.println("회원분류가 일치하지 않습니다." ); // 확인 완료
 			} else if(!user2.getUserPw().equals(user.getUserPw())) { // 비밀번호가 일치하지 않을 때
 				System.out.println("비밀번호가 일치하지 않습니다." ); // 확인 완료
@@ -114,6 +116,15 @@ public class UserMapperTest {
 		} else {
 			System.out.println("삭제실패");
 		}
+	}
+	
+	@Test
+	public void getMajorTest() {
+		List<UserVO> list = mapper.getMajors();
+		for(UserVO u:list) {
+			System.out.println(u.getMajor());
+		}
+		System.out.println(list.size());
 	}
 	
 

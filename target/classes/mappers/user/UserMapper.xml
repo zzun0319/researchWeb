@@ -17,15 +17,15 @@
 	</resultMap>
 
 	<sql id="join"> <!-- 회원 타입에 따라 넣어야할 값들이 다르기 때문에 사용 -->
-		<if test="memberType==1"> <!-- int형이라서 따옴표 안 붙여도 됨 -->
+		<if test="memberType=='학부생'">
 			INSERT INTO members (member_type, user_id, user_pw, identified_num, user_name, email, phone_num, permit) 
 		VALUES (#{memberType},#{userId},#{userPw},#{identifiedNum},#{userName},#{email},#{phoneNum}, 1)
 		</if>
-		<if test="memberType==2 || memberType==4">
+		<if test="memberType=='대학원생' || memberType=='지도교수'">
 			INSERT INTO members (member_type, user_id, user_pw, identified_num, user_name, email, phone_num, major) 
 		VALUES (#{memberType},#{userId},#{userPw},#{identifiedNum},#{userName},#{email},#{phoneNum}, #{major})
 		</if>
-		<if test="memberType==3">
+		<if test="memberType=='강사'">
 			INSERT INTO members (member_type, user_id, user_pw, identified_num, user_name, email, phone_num) 
 		VALUES (#{memberType},#{userId},#{userPw},#{identifiedNum},#{userName},#{email},#{phoneNum})
 		</if>
@@ -51,6 +51,10 @@
 	<delete id="DeleteUser">
 		DELETE FROM members WHERE user_id=#{userId}
 	</delete>
+	
+	<select id="getMajors" resultMap="UserMap">
+		SELECT major FROM members WHERE member_type='지도교수'
+	</select>
 	
     
 </mapper>

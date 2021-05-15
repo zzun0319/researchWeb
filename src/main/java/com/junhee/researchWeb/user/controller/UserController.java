@@ -6,7 +6,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -22,26 +24,33 @@ public class UserController {
 	private UserService service;
 	
 	@GetMapping("/login") // 로그인 페이지로 이동
-	public void login() {
+	public void Login() {
 		System.out.println("로그인 요청: GET");
 	}
 	
 	@PostMapping("/login")
-	public String loginProcess(UserVO user, RedirectAttributes ra, HttpSession session) {
+	public String LoginProcess(UserVO user, RedirectAttributes ra, HttpSession session) {
 		System.out.println("로그인 요청: POST");
 		String msg = service.getLoginCheckMessage(user);
 		if(!msg.equals("로그인 성공")) {
-			ra.addFlashAttribute(msg);
+			System.out.println(msg);
+			ra.addFlashAttribute("msg", msg);
 			return "redirect:/user/login";
 		} else {
 			session.setAttribute("user", service.getOneUserInfo(user));
 			return "/user/mypage";
 		}
-		
-		
-		
-		
-		
+			
 	}
+	
+	@GetMapping("/register")
+	public void RegisterReq() {}
+	
+	@PostMapping("/register")
+	public String RegisterReq(@ModelAttribute("memberType") String memberType, Model model) {
+		model.addAttribute("majorList", service.getMajors());
+		return "user/register2";
+	}
+	
 	
 }
