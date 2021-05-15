@@ -39,26 +39,26 @@
 				<tr>
 					<td>아이디</td>
 					<td id="rightColumn">
-						<input width="100%" type="text" name="userId" placeholder="아이디를 입력하세요. 8자 ~ 14자, 영문, 숫자, 특수문자 조합"> &nbsp; &nbsp;
+						<input style="width:60%;" type="text" name="userId" placeholder="아이디를 입력하세요. 8자 ~ 14자, 영문, 숫자, 특수문자 조합"> &nbsp; &nbsp;
 						<input type="button" id="idCheck" value="아이디 중복체크">
 					</td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
 					<td id="rightColumn">
-						<input width="100%"  type="password" name="userPw" placeholder="비밀번호를 입력하세요. 8자 ~ 20자, 영문, 숫자, 특수문자 조합">
+						<input style="width:60%;"  type="password" name="userPw" placeholder="비밀번호를 입력하세요. 8자 ~ 20자, 영문, 숫자, 특수문자 조합">
 					</td>
 				</tr>
 				<tr>
 					<td>비밀번호 확인</td>
 					<td id="rightColumn">
-						<input width="100%"  type="password" name="pwCheck" placeholder="위의 비밀번호와 똑같이 입력해주세요.">
+						<input style="width:60%;"  type="password" name="pwCheck" placeholder="위의 비밀번호와 똑같이 입력해주세요.">
 					</td>
 				</tr>
 				<tr>
 					<td>학번 / 교번</td>
 					<td id="rightColumn">
-						<input width=100%px type="text" name="identifiedNum" placeholder="9자의 학번 또는 교번을 입력하세요."> &nbsp; &nbsp;
+						<input style="width:60%;" type="text" name="identifiedNum" placeholder="9자의 학번 또는 교번을 입력하세요."> &nbsp; &nbsp;
 						<input type="button" id="idNumCheck" value="학번/교번 중복체크">
 					</td>
 				</tr>
@@ -66,7 +66,7 @@
 					<tr>
 						<td>전공</td>
 						<td id="rightColumn">
-							<input width="100%" type="text" name="major" placeholder="전공을 입력하세요.">
+							<input style="width:60%;" type="text" name="major" placeholder="전공을 입력하세요.">
 						</td>
 					</tr>
 				</c:if>
@@ -86,20 +86,20 @@
 				<tr>
 					<td>이름</td>
 					<td id="rightColumn">
-						<input  width="100%" type="text" name="userName" placeholder="이름을 입력하세요.">
+						<input  style="width:60%;" type="text" name="userName" placeholder="이름을 입력하세요.">
 					</td>
 				</tr>
 				<tr>
 					<td>이메일</td>
 					<td id="rightColumn">
-						<input width="100%" type="text" name="email" placeholder="이메일을 입력하세요."> &nbsp; &nbsp;
+						<input style="width:60%;" type="text" name="email" placeholder="이메일을 입력하세요."> &nbsp; &nbsp;
 						<input type="button" id="emailCheck" value="인증확인 메일 보내기">
 					</td>
 				</tr>
 				<tr>
 					<td>휴대폰 번호</td>
 					<td id="rightColumn">
-						<input width="100%" type="text" name="phoneNum" placeholder="휴대폰 번호를 입력하세요."> &nbsp; &nbsp;
+						<input style="width:60%;" type="text" name="phoneNum" placeholder="휴대폰 번호를 입력하세요."> &nbsp; &nbsp;
 						<input type="button" id="phoneNumCheck" value="본인 인증하기">
 					</td>
 				</tr>
@@ -119,3 +119,10 @@
 
 </body>
 </html>
+
+<script>
+	$(function() {
+		
+		
+	})
+</script>

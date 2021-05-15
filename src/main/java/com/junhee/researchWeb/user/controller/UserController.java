@@ -31,6 +31,7 @@ public class UserController {
 	@PostMapping("/login")
 	public String LoginProcess(UserVO user, RedirectAttributes ra, HttpSession session) {
 		System.out.println("로그인 요청: POST");
+		System.out.println(user);
 		String msg = service.getLoginCheckMessage(user);
 		if(!msg.equals("로그인 성공")) {
 			System.out.println(msg);

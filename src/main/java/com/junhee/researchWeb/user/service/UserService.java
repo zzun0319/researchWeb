@@ -29,10 +29,11 @@ public class UserService implements IUserService {
 	@Override
 	public String getLoginCheckMessage(UserVO user) {
 		UserVO userCheck = mapper.getOneUserInfo(user.getUserId());
+		System.out.println("서비스 객체 내부 처리\n" + user);
 		if(userCheck == null) {
 			return "일치하는 id가 없습니다.";
 		} else { 
-			if(userCheck.getMemberType() != user.getMemberType()) { 
+			if(!userCheck.getMemberType().equals(user.getMemberType())) { 
 				return "회원분류가 일치하지 않습니다.";
 			} else if(!userCheck.getUserPw().equals(user.getUserPw())) { 
 				return "비밀번호가 일치하지 않습니다.";
