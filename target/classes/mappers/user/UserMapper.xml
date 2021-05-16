@@ -30,6 +30,10 @@
 		VALUES (#{memberType},#{userId},#{userPw},#{identifiedNum},#{userName},#{email},#{phoneNum})
 		</if>
 	</sql>
+	
+	<sql id="searchBy">
+		<!-- searchVO를 만들자니.. 좀 이상한데.. 각 메서드 따로 있는게 나을 듯..? 생각 좀 해보자 -->
+	</sql>
 
 	<insert id="Register">
 		<include refid="join" />

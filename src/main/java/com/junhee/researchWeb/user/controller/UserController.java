@@ -69,5 +69,12 @@ public class UserController {
 		}
 	}
 	
+	@ResponseBody
+	@PostMapping("/checkIdNum")
+	public String checkIdNum(@RequestParam("idNum") String idNum) {
+		System.out.println("학번 중복 체크 요청!" + idNum);
+		
+		return "";
+	}
 	
 }

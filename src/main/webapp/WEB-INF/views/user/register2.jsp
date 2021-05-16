@@ -84,6 +84,13 @@
 						<input type="button" id="idNumCheck" value="학번/교번 중복체크">
 					</td>
 				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<div><span id="idNumChk"></span></div>
+					</td>
+				</tr>
 				<c:if test="${memberType=='지도교수'}">
 					<tr>
 						<td>전공</td>
@@ -150,13 +157,15 @@
 		const getPwCheck = RegExp(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,_,~])|([!,@,#,$,%,^,&,*,_,~].*[a-zA-Z0-9]){8,20}/); // a.(a로 시작하는 것들) .n(n으로 끝나는 것들) / *(반복가능), 
 		// 영문 대소문자 & 숫자 포함한 걸로 시작(.), 반복 가능(*), 특수문자 포함해야함.
 		
+		const getIdNumCheck = RegExp(/^[0-9]{9}$/); // 9자리의 학번만 입력 가능, ex 201521421
+		
 		const getNameCheck = RegExp(/^[a-zA-Z가-힣\s]$/); // 영문 대소문자, 한글 가능, 띄어쓰기 가능
 		
 		const getEmailCheck = RegExp(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/); // 이메일 형식만 가능
 		
 		const getPhoneNum = RegExp(/^[0-9]{2,3}-[0,9]{3,4}-[0,9]{4}$/); // 000-0000-0000 형태만 가능
 		
-		const getIdNumCheck = RegExp(/^[0-9]{9}$/) // 9자리의 학번만 입력 가능, ex 201521421
+		
 		
 		
 		let chk1 = false, chk2 = false, chk3 = false, chk4 = false, chk5 = false, chk6 = false;
@@ -178,7 +187,7 @@
 				
 				$("#idCheck").click(function() { // id 중복확인
 					
-					$.ajax({ // ajax
+					$.ajax({ 
 						type: "POST",
 						url: "/user/checkId",
 						data: {
@@ -207,6 +216,8 @@
 			} // else
 		}) // ID 입력값 검증
 		
+		////////////////////////////////////////////////////////
+		
 		$("#user_pw").keyup(function() { // 비밀번호 입력값 검증
 			
 			if($("#user_pw").val() === ""){
@@ -223,7 +234,7 @@
 				$("#user_pw").css("background-color","white");
 				$("#pwChk").html("<b style='font-size: 14px; color: green;'>조건 만족. 아래에 비밀번호를 한 번 더 입력해주세요 :) </b>");
 				
-				$("#pw_again").keyup(function() { // 비밀번호 재입력
+				$("#pw_again").keyup(function() { // 비밀번호 확인란
 					if($("#pw_again").val() === ""){
 						$("#pw_again").css("background-color", "pink");
 						$("#pwAgainChk").html("<b style='font-size: 14px; color: red;'>비밀번호 재입력은 필수 입력사항입니다.</b>");
@@ -240,13 +251,64 @@
 						$("#pwAgainChk").html("<b style='font-size: 14px; color: green;'>비밀번호 확인 완료.</b>");
 						chk2 = true;
 					}
-				})// 비밀번호 재입력
+				})// 비밀번호 확인란
 				
 			}
 				
 				
 		})// 비밀번호 입력값 검증
 		
+		//////////////////////////////////////////v
+		
+		$("#id_num").keyup(function() { // 학번 입력값 검증
+			
+			if($("#id_num").val() === ""){
+				$("#id_num").css("background-color", "pink");
+				$("#idNumChk").html("<b style='font-size: 14px; color: red;'>학번/교번은 필수 입력사항입니다.</b>");
+				chk3 = false;
+			}
+			else if(!getIdNumCheck.test($("#id_num").val())){
+				$("#id_num").css("background-color", "pink");
+				$("#idNumChk").html("<b style='font-size: 14px; color: red;'>학번/교번은 9자리의 숫자입니다.</b>");
+				chk3 = false;
+			}
+			else{
+				$("#id_num").css("background-color","white");
+				$("#idNumChk").html("<b style='font-size: 14px; color: green;'>조건 만족. 중복 체크를 완료하세요 :) </b>");
+		
+				$("#idNumCheck").click(function() { // 학번 중복확인
+					
+					$.ajax({
+						
+						type: "POST",
+						url: "/user/checkIdNum",
+						data: {
+							idNum : $("#id_num").val()
+						},
+						success: function(result2) {
+							console.log("통신 성공!: " + result2);
+							if(result2 === "OK"){
+								$("#id_num").css("background-color", "skyblue");
+								$("#idNumChk").html("<b style='font-size: 14px; color: green;'>사용 가능한 학번/교번입니다.</b>");
+								chk3 = true;
+							}
+							else {
+								$("#id_num").css("background-color", "pink");
+								$("#idNumChk").html("<b style='font-size: 14px; color: red;'>이미 사용중인 학번/교번입니다.</b>");
+								chk3 = false;
+							}
+						},
+						error: function() {
+							console.log("통신 실패!");
+						}
+						
+					})// ajax
+					
+				}) // 학번 중복확인
+		
+			} // else
+			
+		}) // 학번 입력값 검증
 		
 	}) // 검증 함수 끝
 </script>
