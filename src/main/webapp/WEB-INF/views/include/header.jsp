@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
-<link href="resources/css/styles.css" rel="stylesheet" />
+<link href="<c:url value="/css/styles.css" />" rel="stylesheet" />
 
 </head>
 <body>

@@ -30,14 +30,14 @@
     });
 
     // Closes responsive menu when a scroll trigger link is clicked
-    $(".js-scroll-trigger").on('click', function () {
-        $(".navbar-collapse").collapse("hide");
-    });
+    //$(".js-scroll-trigger").on('click', function () {
+    //    $(".navbar-collapse").collapse("hide");
+    //});
 
     // Activate scrollspy to add active class to navbar items on scroll
-    $("body").scrollspy({
-        target: "#mainNav",
-        offset: 56,
-    });
+   // $("body").scrollspy({
+   //     target: "#mainNav",
+   //     offset: 56,
+   // });
 
 })(jQuery); // End of use strict

@@ -1,15 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>로그인 페이지</title>
 
-<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="<c:url value="/assets/favicon.ico" />" />
+
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="/css/styles.css" rel="stylesheet" />
-<script type="text/javascript" src="/js/jquery-3.5.1.js"></script>
+<link href="<c:url value="/css/styles.css" />" rel="stylesheet" />
+<script type="text/javascript" src="<c:url value="/js/jquery-3.5.1.js" />"></script>
 
 </head>
 <body>

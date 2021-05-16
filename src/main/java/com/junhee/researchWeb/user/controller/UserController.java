@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.junhee.researchWeb.user.model.UserVO;
@@ -51,6 +53,20 @@ public class UserController {
 	public String RegisterReq(@ModelAttribute("memberType") String memberType, Model model) {
 		model.addAttribute("majorList", service.getMajors());
 		return "user/register2";
+	}
+	
+	@ResponseBody
+	@PostMapping("/checkId")
+	public String checkId(@RequestParam("id") String id) {
+		System.out.println("아이디 중복 체크 요청!" + id);
+		UserVO user = new UserVO();
+		user.setUserId(id);
+		if(service.getOneUserInfo(user) != null) {
+			return "NO";
+		}
+		else {
+			return "OK";
+		}
 	}
 	
 	
