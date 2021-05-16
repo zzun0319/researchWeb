@@ -146,6 +146,12 @@
 					</td>
 				</tr>
 				<tr>
+					<td></td>
+					<td>
+						<div><span id="phoneNumChk"></span></div>
+					</td>
+				</tr>
+				<tr>
 					<td rowspan="2">
 						<input type="submit" value="회원가입">
 					</td>
@@ -176,7 +182,7 @@
 		
 		const getEmailCheck = RegExp(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/); // 이메일 형식만 가능
 		
-		const getPhoneNum = RegExp(/^[0-9]{2,3}-[0,9]{3,4}-[0,9]{4}$/); // 000-0000-0000 형태만 가능
+		const getPhoneNumCheck = RegExp(/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/); // 000-0000-0000 형태만 가능
 		
 		
 		
@@ -358,5 +364,25 @@
 			}
 		})// 이메일 입력값 검증
 		
+		$("#user_phoneNum").keyup(function() { // 휴대폰 번호 입력값 검증 + 인증번호 보내고 인증하는거 추가해보기
+			if($("#user_phoneNum").val() === ""){
+				$("#user_phoneNum").css("background-color", "pink");
+				$("#phoneNumChk").html("<b style='font-size: 14px; color: red;'>휴대폰 번호는 필수 입력 값입니다.</b>");
+				chk6 = false;
+			} 
+			else if(!getPhoneNumCheck.test($("#user_phoneNum").val())){
+				$("#user_phoneNum").css("background-color", "pink");
+				$("#phoneNumChk").html("<b style='font-size: 14px; color: red;'>000-0000-0000 형식으로 입력해주세요.</b>");
+				chk6 = false;
+			}
+			else {
+				$("#user_phoneNum").css("background-color", "skyblue");
+				$("#phoneNumChk").html("<b style='font-size: 14px; color: green;'>조건 만족.</b>");
+				chk6 = true;
+			}
+		})// 휴대폰 번호 입력값 검증
+		
 	}) // 검증 함수 끝
+	
+	
 </script>

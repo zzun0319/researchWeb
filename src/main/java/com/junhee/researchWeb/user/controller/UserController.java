@@ -76,4 +76,10 @@ public class UserController {
 		return service.checkIdNum(idNum);
 	}
 	
+	@PostMapping("/register2")
+	public String RegisterInsert(UserVO user, Model m) { // 어느 경우에 리다이렉트 하더라..
+		
+		return "redirect:/user/login";
+	}
+	
 }
