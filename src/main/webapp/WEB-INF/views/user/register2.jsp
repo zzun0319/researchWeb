@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>회원가입 페이지</title>
 
+<link rel="icon" type="image/x-icon" href="<c:url value="/assets/favicon.ico" />" />
+
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="<c:url value="/css/styles.css" />" rel="stylesheet" />
 <script type="text/javascript" src="<c:url value="/js/jquery-3.5.1.js" />"></script>
@@ -56,9 +58,23 @@
 					</td>
 				</tr>
 				<tr>
+					<td>
+					</td>
+					<td>
+						<div><span id="pwChk"></span></div>
+					</td>
+				</tr>
+				<tr>
 					<td>비밀번호 확인</td>
 					<td id="rightColumn">
-						<input style="width:60%;"  type="password" name="pwCheck" id="pw_check" placeholder="위의 비밀번호와 똑같이 입력해주세요.">
+						<input style="width:60%;"  type="password" id="pw_again" placeholder="위의 비밀번호와 똑같이 입력해주세요.">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<div><span id="pwAgainChk"></span></div>
 					</td>
 				</tr>
 				<tr>
@@ -127,7 +143,7 @@
 </html>
 
 <script type="text/javascript">
-	$(function() {
+	$(function() { // 검증 함수 시작
 		
 		const getIdCheck = RegExp(/^[a-zA-z0-9]{6,14}$/); // 따옴표(/), 적용 시작(^), 적용 끝($), [허용되는 것: 영문 대소문자 & 숫자, 띄어쓰기 불가능]{최소, 최대}
 		
@@ -144,22 +160,23 @@
 		
 		
 		let chk1 = false, chk2 = false, chk3 = false, chk4 = false, chk5 = false, chk6 = false;
+		// chk1: 아이디 체크, chk2: 비밀번호 체크, chk3: 학번 체크, chk4: 이름 체크, chk5: 이메일 체크, chk6: 휴대폰 번호 체크
 		
 		$("#user_id").keyup(function() { // ID 입력값 검증
-			if($(this).val() === ""){
-				$(this).css("background-color","pink");
-				$("#idChk").html("<b style='color: red;'>아이디는 필수 정보입니다.</b>");
+			if($("#user_id").val() === ""){
+				$("#user_id").css("background-color","pink");
+				$("#idChk").html("<b style='font-size: 14px; color: red;'>아이디는 필수 정보입니다.</b>");
 				chk1 = false;
 			}
-			else if(!getIdCheck.test($(this).val())){
-				$(this).css("background-color","pink");
-				$("#idChk").html("<b style='color: red;'>아이디는 6 ~ 14자의 영문대소문자와 숫자로만 이뤄져야 합니다.</b>");
+			else if(!getIdCheck.test($("#user_id").val())){
+				$("#user_id").css("background-color","pink");
+				$("#idChk").html("<b style='font-size: 14px; color: red;'>아이디는 6 ~ 14자의 영문대소문자와 숫자로만 이뤄져야하고 공백이 없어야 합니다.</b>");
 				chk1 = false;
 			} else {
-				$(this).css("background-color","white");
-				$("#idChk").html("<b style='color: green;'>조건 만족. 중복 체크를 완료하세요 :) </b>");
+				$("#user_id").css("background-color","white");
+				$("#idChk").html("<b style='font-size: 14px; color: green;'>조건 만족. 중복 체크를 완료하세요 :) </b>");
 				
-				$("#idCheck").click(function() {
+				$("#idCheck").click(function() { // id 중복확인
 					
 					$.ajax({ // ajax
 						type: "POST",
@@ -185,11 +202,51 @@
 						}
 						
 					}); // ajax
-				})
+				})// id 중복확인
 				
 			} // else
 		}) // ID 입력값 검증
 		
+		$("#user_pw").keyup(function() { // 비밀번호 입력값 검증
+			
+			if($("#user_pw").val() === ""){
+				$("#user_pw").css("background-color", "pink");
+				$("#pwChk").html("<b style='font-size: 14px; color: red;'>비밀번호는 필수 입력사항입니다.</b>");
+				chk2 = false;
+			} 
+			else if(!getPwCheck.test($("#user_pw").val())){
+				$("#user_pw").css("background-color","pink");
+				$("#pwChk").html("<b style='font-size: 14px; color: red;'>비밀번호는 8 ~ 20자의 영문대소문자와 특수문자의 조합이 필수입니다.</b>");
+				chk2 = false;
+			}
+			else {
+				$("#user_pw").css("background-color","white");
+				$("#pwChk").html("<b style='font-size: 14px; color: green;'>조건 만족. 아래에 비밀번호를 한 번 더 입력해주세요 :) </b>");
+				
+				$("#pw_again").keyup(function() { // 비밀번호 재입력
+					if($("#pw_again").val() === ""){
+						$("#pw_again").css("background-color", "pink");
+						$("#pwAgainChk").html("<b style='font-size: 14px; color: red;'>비밀번호 재입력은 필수 입력사항입니다.</b>");
+						chk2 = false;
+					} 
+					else if($("#pw_again").val() != $("#user_pw").val()){
+						$("#pw_again").css("background-color", "pink");
+						$("#pwAgainChk").html("<b style='font-size: 14px; color: red;'>위의 비밀번호와 불일치합니다.</b>");
+						chk2 = false;
+					}
+					else{
+						$("#user_pw").css("background-color", "skyblue");
+						$("#pw_again").css("background-color", "skyblue");
+						$("#pwAgainChk").html("<b style='font-size: 14px; color: green;'>비밀번호 확인 완료.</b>");
+						chk2 = true;
+					}
+				})// 비밀번호 재입력
+				
+			}
+				
+				
+		})// 비밀번호 입력값 검증
 		
-	})
+		
+	}) // 검증 함수 끝
 </script>
