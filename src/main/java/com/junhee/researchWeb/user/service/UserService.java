@@ -73,4 +73,14 @@ public class UserService implements IUserService {
 		return majorList;
 	}
 
+	@Override
+	public String checkIdNum(String identifiedNum) {
+		UserVO user = mapper.checkIdNum(identifiedNum);
+		if(user == null) {
+			return "OK";
+		} else {
+			return "NO";
+		}
+	}
+
 }

@@ -26,4 +26,7 @@ public interface IUserService {
 	
 	// 전공 리스트 가져오기
 	List<String> getMajors();
+	
+	// 학번 중복 체크
+	String checkIdNum(String identifiedNum);
 }

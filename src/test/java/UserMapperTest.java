@@ -127,5 +127,9 @@ public class UserMapperTest {
 		System.out.println(list.size());
 	}
 	
+	@Test
+	public void getUserInfoByIDNUM() {
+		System.out.println(mapper.checkIdNum("201128888")); 
+	}
 
 }

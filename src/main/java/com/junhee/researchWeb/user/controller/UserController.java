@@ -73,8 +73,7 @@ public class UserController {
 	@PostMapping("/checkIdNum")
 	public String checkIdNum(@RequestParam("idNum") String idNum) {
 		System.out.println("학번 중복 체크 요청!" + idNum);
-		
-		return "";
+		return service.checkIdNum(idNum);
 	}
 	
 }

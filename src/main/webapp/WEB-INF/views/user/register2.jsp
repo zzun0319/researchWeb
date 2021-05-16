@@ -119,10 +119,23 @@
 					</td>
 				</tr>
 				<tr>
+					<td>
+					</td>
+					<td>
+						<div><span id="nameChk"></span></div>
+					</td>
+				</tr>
+				<tr>
 					<td>이메일</td>
 					<td id="rightColumn">
 						<input style="width:60%;" type="text" name="email" id="user_email" placeholder="이메일을 입력하세요."> &nbsp; &nbsp;
 						<input type="button" id="emailCheck" value="인증확인 메일 보내기">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<div><span id="emailChk"></span></div>
 					</td>
 				</tr>
 				<tr>
@@ -159,7 +172,7 @@
 		
 		const getIdNumCheck = RegExp(/^[0-9]{9}$/); // 9자리의 학번만 입력 가능, ex 201521421
 		
-		const getNameCheck = RegExp(/^[a-zA-Z가-힣\s]$/); // 영문 대소문자, 한글 가능, 띄어쓰기 가능
+		const getNameCheck = RegExp(/^[가-힣]{2,5}$/); // 한글 2~5글자 가능, 띄어쓰기 불가능 (2가 한글 2글자도 2네)
 		
 		const getEmailCheck = RegExp(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/); // 이메일 형식만 가능
 		
@@ -309,6 +322,41 @@
 			} // else
 			
 		}) // 학번 입력값 검증
+		
+		$("#user_name").keyup(function() { // 이름 입력값 검증
+			if($("#user_name").val() === ""){
+				$("#user_name").css("background-color", "pink");
+				$("#nameChk").html("<b style='font-size: 14px; color: red;'>이름은 필수 입력 값입니다.</b>");
+				chk4 = false;
+			}
+			else if(!getNameCheck.test($("#user_name").val())){
+				$("#user_name").css("background-color", "pink");
+				$("#nameChk").html("<b style='font-size: 14px; color: red;'>이름은 2자 이상 5자 이하의 한글 형식으로 입력해주세요.</b>");
+				chk4 = false;
+			} else {
+				$("#user_name").css("background-color", "skyblue");
+				$("#nameChk").html("<b style='font-size: 14px; color: green;'>조건 만족.</b>");
+				chk4 = true;
+			}
+		})// 이름 입력값 검증
+		
+		$("#user_email").keyup(function() {// 이메일 입력값 검증 + 나중에 인증 메일 보내서 인증번호 입력할 수 있도록 할 것.
+			if($("#user_email").val() === ""){
+				$("#user_email").css("background-color", "pink");
+				$("#emailChk").html("<b style='font-size: 14px; color: red;'>이메일은 필수 입력 값입니다.</b>");
+				chk5 = false;
+			} 
+			else if(!getEmailCheck.test($("#user_email").val())){
+				$("#user_email").css("background-color", "pink");
+				$("#emailChk").html("<b style='font-size: 14px; color: red;'>이메일 형식으로 입력해주세요.</b>");
+				chk5 = false;
+			}
+			else {
+				$("#user_email").css("background-color", "skyblue");
+				$("#emailChk").html("<b style='font-size: 14px; color: green;'>조건 만족.</b>");
+				chk5 = true;
+			}
+		})// 이메일 입력값 검증
 		
 	}) // 검증 함수 끝
 </script>

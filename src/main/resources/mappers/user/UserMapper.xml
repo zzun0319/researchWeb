@@ -60,5 +60,9 @@
 		SELECT major FROM members WHERE member_type='지도교수'
 	</select>
 	
+	<select id="checkIdNum" resultMap="UserMap">
+		SELECT * FROM members WHERE identified_num=#{identifiedNum}
+	</select>
+	
     
 </mapper>

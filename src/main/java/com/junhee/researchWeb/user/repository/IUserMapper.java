@@ -28,6 +28,8 @@ public interface IUserMapper {
 	// 전공 리스트로 얻어오기 기능
 	List<UserVO> getMajors();
 	
+	UserVO checkIdNum(String identifiedNum);
+	
 	// 회원 정보 조회 기능 (어느 날짜에 누가 신청했는지, 각 실험 스케줄의 id를 받는다)
 	//List<UserVO> GetParticipantList(int researchId);
 }
