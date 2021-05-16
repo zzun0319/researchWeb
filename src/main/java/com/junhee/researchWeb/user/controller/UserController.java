@@ -77,8 +77,10 @@ public class UserController {
 	}
 	
 	@PostMapping("/register2")
-	public String RegisterInsert(UserVO user, Model m) { // 어느 경우에 리다이렉트 하더라..
-		
+	public String RegisterInsert(UserVO user, RedirectAttributes ra) { // 어느 경우에 리다이렉트 하더라..
+		System.out.println("회원가입 최종 요청!");
+		service.Register(user);
+		ra.addFlashAttribute("msg", "회원가입 성공!");
 		return "redirect:/user/login";
 	}
 	

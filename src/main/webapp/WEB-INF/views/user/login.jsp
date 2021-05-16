@@ -63,7 +63,7 @@
 <script>
 	const result = "${msg}"
 	if(result != "로그인 성공" && result.length > 0){
-		alert(result)
+		alert(result);
 		// 이렇게 할 게 아니라 에러메시지별, 커서 갖다놓는 위치를 다르게 해야 해서 조건문 다 만들어줘야함.
 	}
 

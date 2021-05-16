@@ -17,8 +17,8 @@ public class UserService implements IUserService {
 	
 	@Override
 	public void Register(UserVO user) {
-		// TODO Auto-generated method stub
-
+		System.out.println("서비스까지 회원가입 최종 요청이 들어옴.");
+		mapper.Register(user);
 	}
 	
 	@Override

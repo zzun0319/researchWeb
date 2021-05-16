@@ -29,7 +29,7 @@
 		<h2>회원가입 정보를 입력해주세요.</h2>
 		</p>
 		<p>
-		<form method="post">
+		<form action="/user/register2" method="post" name="reg_form">
 			<table>
 				<tr>
 					<td>회원분류</td>
@@ -153,7 +153,7 @@
 				</tr>
 				<tr>
 					<td rowspan="2">
-						<input type="submit" value="회원가입">
+						<input type="button" id="finalRegi" value="회원가입">
 					</td>
 				</tr>
 			</table>
@@ -382,7 +382,54 @@
 			}
 		})// 휴대폰 번호 입력값 검증
 		
+		$("#finalRegi").click(function() {
+			if(!chk1){
+				console.log("id문제");
+				alert("아이디 입력란에 문제가 있습니다.");
+				reg_form.userId.focus();
+				return;
+			}
+			else if(!chk2){
+				console.log("pw문제");
+				alert("비밀번호나 비밀번호 확인란에 문제가 있습니다.");
+				reg_form.userPw.focus();
+				return;
+			}
+			else if(!chk3){
+				console.log("idnum문제");
+				alert("학번 입력란에 문제가 있습니다.");
+				reg_form.identifiedNum.focus();
+				return;
+			}
+			else if(!chk4){
+				console.log("name문제");
+				alert("이름 입력란에 문제가 있습니다.");
+				reg_form.userName.focus();
+				return;
+			}
+			else if(!chk5){
+				console.log("email문제");
+				alert("이메일 입력란에 문제가 있습니다.");
+				reg_form.email.focus();
+				return;
+			}
+			else if(!chk6){
+				console.log("phone문제");
+				alert("휴대폰 번호 입력란에 문제가 있습니다.");
+				reg_form.phoneNum.focus();
+				return;
+			}
+			else{
+				if(confirm("회원가입 하시겠습니까?")){ // 확인 누르면
+					console.log("회원 가입 승인");
+					reg_form.submit();
+				} else { // 취소 누르면
+					console.log("회원 가입 취소");
+					return;
+				}
+			}
+		})
+		
 	}) // 검증 함수 끝
-	
 	
 </script>
