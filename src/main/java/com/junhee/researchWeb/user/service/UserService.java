@@ -29,17 +29,22 @@ public class UserService implements IUserService {
 	@Override
 	public String getLoginCheckMessage(UserVO user) {
 		UserVO userCheck = mapper.getOneUserInfo(user.getUserId());
-		System.out.println("서비스 객체 내부 처리\n" + user);
+		System.out.println("서비스 객체 로그인 요청 처리\n" + user);
 		if(userCheck == null) {
+			System.out.println("서비스: 일치하는 id가 없습니다.");
 			return "일치하는 id가 없습니다.";
 		} else { 
 			if(!userCheck.getMemberType().equals(user.getMemberType())) { 
+				System.out.println("서비스: 회원분류가 일치하지 않습니다.");
 				return "회원분류가 일치하지 않습니다.";
-			} else if(!userCheck.getUserPw().equals(user.getUserPw())) { 
+			} else if(!userCheck.getUserPw().equals(user.getUserPw())) {
+				System.out.println("서비스: 비밀번호가 일치하지 않습니다.");
 				return "비밀번호가 일치하지 않습니다.";
 			} else if(userCheck.getPermit() == 0) {
+				System.out.println("서비스: 가입 승인이 나지 않아 로그인하실 수 없습니다.");
 				return "가입 승인이 나지 않아 로그인하실 수 없습니다.";
 			} else {
+				System.out.println("서비스: 로그인 성공");
 				return "로그인 성공";
 			}
 		}
@@ -47,20 +52,17 @@ public class UserService implements IUserService {
 
 	@Override
 	public void UpdateUserInfo(UserVO user) {
-		// TODO Auto-generated method stub
-
+		mapper.UpdateUserInfo(user);
 	}
 
 	@Override
 	public void UpdatePassword(String userId, String userPw) {
-		// TODO Auto-generated method stub
-
+		mapper.UpdatePassword(userId, userPw);
 	}
 
 	@Override
 	public void DeleteUser(String userId) {
-		// TODO Auto-generated method stub
-
+		mapper.DeleteUser(userId);
 	}
 
 	@Override

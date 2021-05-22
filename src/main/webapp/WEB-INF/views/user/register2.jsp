@@ -35,6 +35,7 @@
 					<td>회원분류</td>
 					<td id="rightColumn">
 						<input name="memberType" value="${memberType}" disabled>
+						<input type="hidden" name="memberType" value="${memberType}">
 					</td>
 				</tr>
 				<tr>
@@ -67,7 +68,7 @@
 				<tr>
 					<td>비밀번호 확인</td>
 					<td id="rightColumn">
-						<input style="width:60%;"  type="password" id="pw_again" placeholder="위의 비밀번호와 똑같이 입력해주세요.">
+						<input style="width:60%;" type="password" id="pw_again" placeholder="위의 비밀번호와 똑같이 입력해주세요.">
 					</td>
 				</tr>
 				<tr>

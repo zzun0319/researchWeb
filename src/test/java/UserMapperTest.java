@@ -21,7 +21,7 @@ public class UserMapperTest {
 	public void insertTest() {
 		UserVO user1 = new UserVO();
 		user1.setMemberType("학부생");
-		user1.setUserId("participant1");
+		user1.setUserId("participant12");
 		user1.setUserPw("participant1");
 		user1.setIdentifiedNum("201121725");
 		user1.setUserName("홍길동");

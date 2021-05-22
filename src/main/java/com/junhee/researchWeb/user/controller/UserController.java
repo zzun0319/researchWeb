@@ -36,12 +36,14 @@ public class UserController {
 		System.out.println(user);
 		String msg = service.getLoginCheckMessage(user);
 		if(!msg.equals("로그인 성공")) {
-			System.out.println(msg);
+			System.out.println("컨트롤러: " + msg);
 			ra.addFlashAttribute("msg", msg);
 			return "redirect:/user/login";
 		} else {
-			session.setAttribute("user", service.getOneUserInfo(user));
-			return "/user/mypage";
+			System.out.println("컨트롤러: " + msg);
+			System.out.println(service.getOneUserInfo(user));
+			session.setAttribute("member", service.getOneUserInfo(user));
+			return "redirect:/user/mypage";
 		}
 			
 	}
@@ -79,9 +81,37 @@ public class UserController {
 	@PostMapping("/register2")
 	public String RegisterInsert(UserVO user, RedirectAttributes ra) { // 어느 경우에 리다이렉트 하더라..
 		System.out.println("회원가입 최종 요청!");
+		System.out.println(user + "가 컨트롤러에 전달");
 		service.Register(user);
 		ra.addFlashAttribute("msg", "회원가입 성공!");
 		return "redirect:/user/login";
+	}
+	
+	@GetMapping("/mypage")
+	public void mypage() {}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "user/login";
+	}
+	
+	@GetMapping("updatePw")
+	public void updatePw1() {}
+	
+	@PostMapping("/updatePw")
+	public String updatePw2(UserVO user, String newPw, RedirectAttributes ra) {
+		System.out.println("비밀번호 변경 요청이 들어옴");
+		System.out.println("Id: " + user.getUserId() + ", newPw: " + newPw );
+		String msg = service.getLoginCheckMessage(user);
+		if(!msg.equals("로그인 성공")) {
+			ra.addFlashAttribute("msg", "현재 비밀번호가 일치하지 않습니다.");
+		}
+		else {
+			service.UpdatePassword(user.getUserId(), newPw);
+			ra.addFlashAttribute("msg", "비밀번호 변경이 완료되었습니다.");
+		}
+		return "redirect:/user/mypage";
 	}
 	
 }
