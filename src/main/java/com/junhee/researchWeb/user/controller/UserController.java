@@ -114,4 +114,7 @@ public class UserController {
 		return "redirect:/user/mypage";
 	}
 	
+	@GetMapping("/updateInfo")
+	public void updateUserInfo1() {}
+	
 }

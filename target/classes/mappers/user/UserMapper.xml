@@ -53,7 +53,7 @@
 	</delete>
 	
 	<select id="getMajors" resultMap="UserMap">
-		SELECT major FROM members WHERE member_type='지도교수'
+		SELECT * FROM members WHERE member_type='지도교수'
 	</select>
 	
 	<select id="checkIdNum" resultMap="UserMap">

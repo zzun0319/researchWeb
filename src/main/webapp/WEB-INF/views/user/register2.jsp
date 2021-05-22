@@ -107,7 +107,7 @@
 							<select name="major">
 									<option>===전공선택===</option>
 								<c:forEach var="m" items="${majorList}">
-									<option value="${m}">${m}</option>
+										<option value="${m}">${m}</option>
 								</c:forEach>
 							</select>
 						</td>

@@ -70,8 +70,13 @@ public class UserService implements IUserService {
 		List<UserVO> uList = mapper.getMajors();
 		List<String> majorList = new ArrayList<>();
 		for(UserVO user : uList) {
-			majorList.add(user.getMajor());
+			System.out.println(user);
+			if(user.getPermit() == 1) {
+				majorList.add(user.getMajor());
+			}
 		}
+		System.out.println("uList: " + uList.size());
+		System.out.println("majorList: " + majorList.size());
 		return majorList;
 	}
 
