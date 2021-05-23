@@ -7,13 +7,14 @@
 <title>마이페이지</title>
 
 <!-- Core theme CSS (includes Bootstrap)-->
+<link rel="icon" type="image/x-icon" href="<c:url value="/assets/favicon.ico" />" />
 <link href="<c:url value="/css/styles.css" />" rel="stylesheet" />
 <script type="text/javascript" src="<c:url value="/js/jquery-3.5.1.js" />"></script>
 
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
-	회원 정보 수정 페이지.. 나중에 구현
+	회원 정보 수정 페이지.. (이메일 인증 + 휴대폰 인증까지 공부하고) 나중에 구현 <br>
 	<%-- <c:if test="${member == null}">
 		<script>
 			alert("로그인 후 이용 가능합니다.");
@@ -30,6 +31,7 @@
 			<input type="button" value="회원 정보 수정" onclick="updateInfo()">
 		</form>
 		 --%>
+		 <button id="delete" onclick="location.href='/user/deleteUser'">탈퇴하기</button>
 	<jsp:include page="../include/footer.jsp" />
 </body>
 </html>

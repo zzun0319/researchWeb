@@ -145,5 +145,15 @@ public class UserController {
 		return "redirect:/user/mypage";
 	}
 	
+	@GetMapping("/deleteUser")
+	public void deleteUser1() {}
+	
+	@PostMapping("/deleteUser")
+	@ResponseBody
+	public String deleteUser2(String userId) {
+		System.out.println("È¸¿ø Å»Åð ¿äÃ»: " + userId);
+		service.DeleteUser(userId);
+		return "OK";
+	}
 	
 }

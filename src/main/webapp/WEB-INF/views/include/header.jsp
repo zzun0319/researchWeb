@@ -49,7 +49,7 @@
                        		<a href="#" style="color:white;">연구 참여 점수 출력하기</a> <br>                         		
                        	</c:otherwise>
                     </c:choose>
-                    <a href="#" style="color:white;">로그아웃</a>
+                    <a href="/user/mypage" style="color:white;">마이페이지</a>
                 </c:if>
             </div>
         </header>

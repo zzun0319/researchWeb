@@ -7,6 +7,7 @@
 <title>마이페이지</title>
 
 <!-- Core theme CSS (includes Bootstrap)-->
+<link rel="icon" type="image/x-icon" href="<c:url value="/assets/favicon.ico" />" />
 <link href="<c:url value="/css/styles.css" />" rel="stylesheet" />
 <script type="text/javascript" src="<c:url value="/js/jquery-3.5.1.js" />"></script>
 
