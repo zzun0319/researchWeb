@@ -22,9 +22,17 @@
 
 	<jsp:include page="../include/header.jsp" />
 	
-	<input type="button" value="회원정보 수정" onclick="location.href='/user/updateInfo'"><br>
-	<input type="button" value="비밀번호 수정" onclick="location.href='/user/updatePw'"><br>
-	<input type="button" value="로그아웃" onclick="location.href='/user/logout'"><br>
+	<c:if test="${member.memberType == '강사' || member.memberType == '지도교수'}">
+		<input type="button" value="연구 참여 중인 과목 보기" onclick="location.href='#'"><br>
+	</c:if>
+	<c:if test="${member.memberType == '지도교수'}">
+		<input type="button" value="가입 승인하기" onclick="location.href='/user/acceptResearcher/${member.major}'"><br>
+		<input type="button" value="개설 연구 승인하기" onclick="location.href='#'"><br>
+	</c:if>
+	
+		<input type="button" value="회원정보 수정" onclick="location.href='/user/updateInfo'"><br>
+		<input type="button" value="비밀번호 수정" onclick="location.href='/user/updatePw'"><br>
+		<input type="button" value="로그아웃" onclick="location.href='/user/logout'"><br>
 	
 	<jsp:include page="../include/footer.jsp" />
 </body>

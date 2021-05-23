@@ -60,5 +60,13 @@
 		SELECT * FROM members WHERE identified_num=#{identifiedNum}
 	</select>
 	
+	<select id="getGStudentsInfo" resultMap="UserMap">
+		SELECT * FROM members WHERE major=#{major} AND member_type='대학원생'ORDER BY user_name ASC
+	</select>
+	
+	<update id="ChangePermit">
+		UPDATE members SET permit=#{permit} WHERE identified_num=#{identifiedNum}
+	</update>
+	
     
 </mapper>

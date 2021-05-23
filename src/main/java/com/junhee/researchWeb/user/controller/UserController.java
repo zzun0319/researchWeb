@@ -2,6 +2,8 @@ package com.junhee.researchWeb.user.controller;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.junhee.researchWeb.user.model.UserListVO;
 import com.junhee.researchWeb.user.model.UserVO;
 import com.junhee.researchWeb.user.service.UserService;
 
@@ -93,7 +97,7 @@ public class UserController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "user/login";
+		return "redirect:/user/login";
 	}
 	
 	@GetMapping("updatePw")
@@ -116,5 +120,25 @@ public class UserController {
 	
 	@GetMapping("/updateInfo")
 	public void updateUserInfo1() {}
+	
+	@GetMapping("/acceptResearcher/{major}")
+	public String acceptResearcher1(@PathVariable String major, Model m) {
+		System.out.println("대학원생 리스트 요청이 들어옴");
+		m.addAttribute("GStudentList", service.getGStudentsInfo(major));
+		return "user/acceptResearcher";
+	}
+	
+	@PostMapping("/acceptResearcher")
+	public String acceptResearcher2(@ModelAttribute(value="UserListVO") UserListVO userList) {
+		System.out.println("대학원생 가입 승인 변경 요청");
+		List<UserVO> uList = userList.getuList();
+		for(UserVO u : uList) {
+			System.out.println(u);
+		}
+		service.ChangePermit(uList);
+		
+		return "redirect:/user/acceptResearcher";
+	}
+	
 	
 }

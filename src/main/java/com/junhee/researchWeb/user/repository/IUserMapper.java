@@ -31,6 +31,11 @@ public interface IUserMapper {
 	// 학번 중복 확인 기능
 	UserVO checkIdNum(String identifiedNum);
 	
+	// 지도교수 - 전공 같은 대학원생 가입신청 승인위해 학생정보 가져오기
+	List<UserVO> getGStudentsInfo(String major);
+	
+	void ChangePermit(UserVO user);
+	
 	// 회원 정보 조회 기능 (어느 날짜에 누가 신청했는지, 각 실험 스케줄의 id를 받는다)
 	//List<UserVO> GetParticipantList(int researchId);
 }

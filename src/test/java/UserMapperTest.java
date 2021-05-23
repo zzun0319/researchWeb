@@ -131,5 +131,13 @@ public class UserMapperTest {
 	public void getUserInfoByIDNUM() {
 		System.out.println(mapper.checkIdNum("201128888")); 
 	}
+	
+	@Test
+	public void getStudentsInfoTest() {
+		List<UserVO> list = mapper.getGStudentsInfo("응용인지심리");
+		for(UserVO user : list) {
+			System.out.println(user);
+		}
+	}
 
 }

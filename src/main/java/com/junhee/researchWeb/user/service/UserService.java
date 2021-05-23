@@ -90,4 +90,18 @@ public class UserService implements IUserService {
 		}
 	}
 
+	@Override
+	public List<UserVO> getGStudentsInfo(String major) {
+		return mapper.getGStudentsInfo(major);
+	}
+
+	@Override
+	public void ChangePermit(List<UserVO> uList) {
+		
+		for(UserVO user : uList) {
+			mapper.ChangePermit(user);
+		}
+		
+	}
+
 }

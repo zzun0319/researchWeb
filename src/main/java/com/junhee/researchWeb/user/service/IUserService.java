@@ -29,4 +29,11 @@ public interface IUserService {
 	
 	// 학번 중복 체크
 	String checkIdNum(String identifiedNum);
+	
+	// 대학원생 리스트 반환
+	List<UserVO> getGStudentsInfo(String major);
+	
+	// 가입 허가 변경
+	void ChangePermit(List<UserVO> uList);
+	
 }
