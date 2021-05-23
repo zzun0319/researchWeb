@@ -26,7 +26,7 @@
 		<input type="button" value="연구 참여 중인 과목 보기" onclick="location.href='#'"><br>
 	</c:if>
 	<c:if test="${member.memberType == '지도교수'}">
-		<input type="button" value="가입 승인하기" onclick="location.href='/user/acceptResearcher/${member.major}'"><br>
+		<input type="button" value="가입 승인하기" onclick="location.href='/user/acceptResearcher?major=${member.major}'"><br>
 		<input type="button" value="개설 연구 승인하기" onclick="location.href='#'"><br>
 	</c:if>
 	

@@ -40,7 +40,7 @@ public class UserService implements IUserService {
 			} else if(!userCheck.getUserPw().equals(user.getUserPw())) {
 				System.out.println("서비스: 비밀번호가 일치하지 않습니다.");
 				return "비밀번호가 일치하지 않습니다.";
-			} else if(userCheck.getPermit() == 0) {
+			} else if(userCheck.getPermit() != 1) {
 				System.out.println("서비스: 가입 승인이 나지 않아 로그인하실 수 없습니다.");
 				return "가입 승인이 나지 않아 로그인하실 수 없습니다.";
 			} else {

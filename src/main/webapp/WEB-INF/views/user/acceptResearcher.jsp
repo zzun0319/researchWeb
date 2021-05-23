@@ -37,24 +37,25 @@
 
 	</p>
 	<p>
-	<form method="post" action="/user/acceptResearcher">
+	<form method="post" action="/user/acceptResearcher2">
+	<input type="hidden" name="major" value="${member.major}">
 		<table border="1">
 			<tr>
 				<td>학생 이름</td>
 				<td>학번</td>
 				<td>승인</td>
 			</tr>
-			<c:forEach var="student" items="${GStudentList}">
-				<input type="hidden" name="userId" value="${student.userId}">
-				<input type="hidden" name="identifiedNum" value="${student.identifiedNum}">
+			<c:forEach var="student" items="${GStudentList}" varStatus="status">
+				<input type="hidden" name="uList[${status.index}].userId" value="${student.userId}">
+				<input type="hidden" name="uList[${status.index}].identifiedNum" value="${student.identifiedNum}">
 				<tr>
 					<td>${student.userName}</td>
 					<td>${student.identifiedNum}</td>
 					<td>
-					<select name="permit">
+					<select name="uList[${status.index}].permit">
 						<option style="color:red;" value="-1" ${student.permit == -1 ? 'selected' : ''}>승인거부</option>
-						<option value="-1" ${student.permit == 0 ? 'selected' : ''}>승인대기</option>
-						<option style="color:blue;" value="-1" ${student.permit == 1 ? 'selected' : ''}>승인허가</option>
+						<option value="0" ${student.permit == 0 ? 'selected' : ''}>승인대기</option>
+						<option style="color:blue;" value="1" ${student.permit == 1 ? 'selected' : ''}>승인허가</option>
 					</select>
 					</td>
 				</tr>

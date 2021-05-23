@@ -2,11 +2,14 @@ package com.junhee.researchWeb.user.controller;
 
 
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -121,23 +125,24 @@ public class UserController {
 	@GetMapping("/updateInfo")
 	public void updateUserInfo1() {}
 	
-	@GetMapping("/acceptResearcher/{major}")
-	public String acceptResearcher1(@PathVariable String major, Model m) {
-		System.out.println("대학원생 리스트 요청이 들어옴");
+	@GetMapping("/acceptResearcher")
+	public String acceptResearcher1(@RequestParam("major") String major, Model m) {
+		System.out.println("대학원생 리스트 요청이 들어옴" + major);
 		m.addAttribute("GStudentList", service.getGStudentsInfo(major));
 		return "user/acceptResearcher";
 	}
 	
-	@PostMapping("/acceptResearcher")
-	public String acceptResearcher2(@ModelAttribute(value="UserListVO") UserListVO userList) {
-		System.out.println("대학원생 가입 승인 변경 요청");
+	//@PostMapping("/acceptResearcher")
+	@RequestMapping(value="/acceptResearcher2", method=RequestMethod.POST)
+	public String acceptResearcher2(@ModelAttribute(value="UserListVO") UserListVO userList, String major, RedirectAttributes ra) {
+		System.out.println("대학원생 가입 승인 변경 요청 / major: " + major);
 		List<UserVO> uList = userList.getuList();
 		for(UserVO u : uList) {
 			System.out.println(u);
 		}
 		service.ChangePermit(uList);
-		
-		return "redirect:/user/acceptResearcher";
+		ra.addFlashAttribute("msg", "가입 승인 정보가 변경되었습니다.");
+		return "redirect:/user/mypage";
 	}
 	
 	
