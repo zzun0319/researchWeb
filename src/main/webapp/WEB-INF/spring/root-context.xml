@@ -22,5 +22,7 @@
 	</bean>
 	
 	<mybatis-spring:scan base-package="com.junhee.researchWeb.user.repository" />
+	<mybatis-spring:scan base-package="com.junhee.researchWeb.research.repository" />
+	
 		
 </beans>
