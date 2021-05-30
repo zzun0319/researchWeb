@@ -41,7 +41,7 @@
                         	<a href="#" style="color:white;">연구 참여 신청하기</a> <br>
                         </c:when>
                         <c:when test="${member.memberType == '대학원생'}">
-                        	<a href="#" style="color:white;">연구 개설 신청하기</a> <br>
+                        	<a href="/research/register1" style="color:white;">연구 개설 신청하기</a> <br>
                        		<a href="#" style="color:white;">연구 목적 외 장소 예약하기</a> <br>                    		
                         </c:when>
                         <c:otherwise>
